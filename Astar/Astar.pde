@@ -5,7 +5,7 @@ int CELL_SIZE = 10;
 Game game;
 
 void setup() {
-  frameRate(10);
+  frameRate(60);
   size(STAGE_WIDTH, STAGE_HEIGHT);
   background(255);
   game = new Game();
@@ -14,4 +14,8 @@ void setup() {
 void draw() {
   background(255);
   game.tick();
+}
+
+void resetGame() {
+  game = new Game();
 }

@@ -1,11 +1,12 @@
 class Game {
   Cell grid[][];
-  
+  Cell startCell, endCell;
   int rows, cols;
+  Player player;
   
   Game() {
-    cols = STAGE_WIDTH / 10;
-    rows = STAGE_HEIGHT / 10;
+    cols = STAGE_WIDTH / CELL_SIZE;
+    rows = STAGE_HEIGHT / CELL_SIZE;
     
     grid = new Cell[rows][cols];
     
@@ -15,8 +16,12 @@ class Game {
       }
     }
     
-    grid[rows / 2][0].type = "start";
-    grid[rows / 2][cols - 1].type = "end";
+    startCell = grid[rows / 2][0];
+    startCell.type = "start";
+    endCell = grid[rows / 2][cols - 1];
+    endCell.type = "end";
+    
+    player = new Player(startCell);
   }
   
   void tick() {
@@ -25,5 +30,7 @@ class Game {
         grid[i][j].draw();
       }
     }
+    
+    player.update();
   }
 }
